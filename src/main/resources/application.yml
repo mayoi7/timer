@@ -1,0 +1,10 @@
+timer:
+  mode:
+    class-mode: simple
+    method-mode: simple
+    time-mode: simple
+    unit: milliseconds
+  format:
+    date-format: yyyy-MM-dd HH:mm:ss
+    file-format: timer-demo
+    formatter-path: com.akira.timer.simulate.UserFormatter
