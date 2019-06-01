@@ -8,7 +8,7 @@
         <version>2.1.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.github.akira</groupId>
+    <groupId>com.github.mayoi7</groupId>
     <artifactId>timer</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0-SNAPSHOT</version>
