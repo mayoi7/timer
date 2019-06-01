@@ -1,4 +1,4 @@
-package com.akira.timer;
+package com.github.mayoi7.timer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
