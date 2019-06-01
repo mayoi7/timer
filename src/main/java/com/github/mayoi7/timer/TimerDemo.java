@@ -29,7 +29,7 @@ public class TimerDemo {
         System.out.println("longTimeMethod begin");
         List<Integer> list = new ArrayList<>();
 
-        for (int i = 0; i < MID_BIG_TEST_TIMES; i++) {
+        for (int i = 0; i < MEDIUM_TEST_TIMES; i++) {
             list.add(i);
         }
         System.out.println("longTimeMethod over");
