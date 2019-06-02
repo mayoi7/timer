@@ -24,7 +24,7 @@ public class TimerDemo {
 
     public static final int SMALL_TEST_TIMES = 10000;
 
-    @Timer(position = ResultPosition.LOG, unit = TimeUnit.SECONDS)
+    @Timer(formatter = "", position = ResultPosition.LOG, unit = TimeUnit.SECONDS)
     public void longTimeMethod() {
         System.out.println("longTimeMethod begin");
         List<Integer> list = new ArrayList<>();

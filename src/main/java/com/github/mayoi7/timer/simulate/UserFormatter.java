@@ -23,4 +23,5 @@ public class UserFormatter extends AbstractFormatter {
     public InfoReceiver getInfoReceiver() {
         return new UserReceiver();
     }
+
 }
