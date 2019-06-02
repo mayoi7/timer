@@ -1,4 +1,4 @@
-# timer
+# Timer
 [Timer](https://user-gold-cdn.xitu.io/2019/6/2/16b16b5309a16633/timer)是一个基于spring-aop的方法计时器，支持高度定制的功能来适配项目的需要
 
 ## 项目结构
