@@ -3,7 +3,7 @@
 
 ## 项目结构
 
-![](https://user-gold-cdn.xitu.io/2019/6/2/16b160c13e305377?w=548&h=566&f=png&s=33014)
+![](https://img-blog.csdnimg.cn/20190602134432269.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NDM1MDc4,size_16,color_FFFFFF,t_70)
 
 - Properties：属性配置，定义了一些结果模式和规格，可以在`application.yml`文件中自行更改
 - Formatter：属性格式化器，用于将每一项需要展示的属性格式化为字符串输出
