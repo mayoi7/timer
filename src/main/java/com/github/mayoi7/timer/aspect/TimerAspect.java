@@ -61,6 +61,7 @@ public class TimerAspect {
             TimeUnit unit = timer.unit();
 
             // 如果在注解处声明了其他时间单位，则覆盖配置文件中设置的时间单位
+            // FIXME: 2019/6/2 在@Timer注解处如果将 unit声明为毫秒则无效
             if(unit != TimeUnit.MILLISECONDS) {
                 properties.getTimerMode().setUnit(unit);
             } else {
@@ -70,60 +71,21 @@ public class TimerAspect {
 
             // 时间花费
             long duration = TimerUtil.timeConversion(endTime - startTime, unit);
-
-            Class clazz = joinPoint.getSignature().getDeclaringType();
-
+            // 执行的方法对象
             Method method = ((MethodSignature)joinPoint.getSignature()).getMethod();
+            // 方法所在类
+            Class clazz = joinPoint.getSignature().getDeclaringType();
 
             // 构建数据源对象
             TimerOutputSource source
                     = new TimerOutputSource(new Date(), duration, method, clazz);
 
             // 构建结果输出工具对象
-            TimerStreamOutputer outputer = null;
+            TimerStreamOutputer outputer = TimerStreamOutputer
+                    .getInstance(timer.formatter(), properties, source);
 
-            // 格式化器的路径
-            String formatterPath = null;
-
-            /*
-             * 如果timer中的配置的自定义格式化器路径不为空，或配置文件配置的格式化器路径不为空，
-             * 就使用配置的自定义格式化器，
-             * 否则会使用默认的格式化器，且timer配置的优先级大于配置文件中
-             */
-            if(!"".equals(formatterPath = timer.formatter()) ||
-                    !"".equals(formatterPath =
-                            properties.getTimerFormat().getFormatterPath())) {
-                try {
-                    Class<?> formatterClass = Class.forName(formatterPath);
-                    // 获取类构造器
-                    Constructor constructor = formatterClass
-                            .getConstructor(TimerProperties.class, TimerOutputSource.class);
-
-                    // 创建实例
-                    AbstractFormatter formatter = (AbstractFormatter)constructor
-                            .newInstance(properties, source);
-                    // 通过自定义格式化器来初始化输出流工具类
-                    outputer = new TimerStreamOutputer(formatter);
-                } catch (ClassNotFoundException |
-                        NoSuchMethodException |
-                        IllegalAccessException |
-                        InstantiationException |
-                        InvocationTargetException e) {
-                    e.printStackTrace();
-                    // 如果报错，会使用默认的格式化器，但是会打印出错信息
-                    outputer = new TimerStreamOutputer(properties, source);
-                }
-            } else {
-                // 如果构造器路径为空，则默认会使用配置文件中的初始化器
-                outputer = new TimerStreamOutputer(properties, source);
-            }
-
-            // 根据设定，选择不同的信息输出位置
-            if(ResultPosition.CONSOLE == timer.position()) {
-                outputer.output2Console();
-            } else if(ResultPosition.LOG == timer.position()) {
-                outputer.output2Log();
-            }
+            // 输出结果
+            outputer.output(timer.position());
         }
 
         return result;
