@@ -1,11 +1,8 @@
 timer:
   mode:
     class-mode: simple
-    method-mode: simple
+    method-mode: param
     time-mode: simple
     unit: milliseconds
   format:
     date-format: yyyy-MM-dd HH:mm:ss
-    file-format: timer-demo
-    formatter-path: com.github.mayoi7.timer.simulate.UserFormatter
-    log-path: /

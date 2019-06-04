@@ -23,13 +23,29 @@ public class SimpleFormatter extends AbstractFormatter {
 
     public SimpleFormatter(TimerProperties properties, TimerOutputSource source) {
         super(properties, source);
+
+        // 注意，如果没有这一步，则类格式化器不会生效
+        classFormatter = new SimpleClassFormatter();
     }
 
-    public class SimpleInfoReceiver extends InfoReceiver {
+    private class SimpleInfoReceiver extends InfoReceiver {
 
         @Override
         public String output() {
             return "\n[" + super.output().substring(28) + "]";
+        }
+    }
+
+    private static class SimpleClassFormatter extends ClassFormatter {
+
+        @Override
+        public String formatInFull(Class clazz) {
+            return super.formatInFull(clazz);
+        }
+
+        @Override
+        public String formatInSimple(Class clazz) {
+            return super.formatInSimple(clazz);
         }
     }
 

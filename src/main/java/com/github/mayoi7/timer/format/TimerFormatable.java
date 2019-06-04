@@ -1,5 +1,6 @@
 package com.github.mayoi7.timer.format;
 
+import com.github.mayoi7.timer.exception.TimerException;
 import com.github.mayoi7.timer.props.TimerOutputSource;
 import com.github.mayoi7.timer.props.TimerProperties;
 import lombok.Data;
@@ -21,9 +22,10 @@ public interface TimerFormatable extends Formatable {
      *     <li>date: 打印结果的时间</li>
      *     <li>name: 计时器的名称（如果不设置则为一个8位随机字符串）</li>
      *     <li>duration: 方法执行时间</li>
-     *     <li>classInfo: 类信息，如果想要获取更多的类格式，
-     *     可以通过重写AbstractFormatter中的formatClass方法实现（不推荐重写）</li>
-     *     <li>methodInfo: 方法信息，如果想获取更多的方法信息，需要重写formatMethod</li>
+     *     <li>classInfo: 类信息。
+     *     如果想要获取更多的类格式，请阅读{@link AbstractFormatter}的说明</li>
+     *     <li>methodInfo: 方法信息。
+     *     如果想获取更多的方法信息，请阅读{@link AbstractFormatter}的说明</li>
      * </ul>
      *
      */
@@ -129,6 +131,6 @@ public interface TimerFormatable extends Formatable {
      * @return 属性对象，保存有用户的配置属性
      */
     default TimerProperties getTimerProperties() {
-        throw new RuntimeException("no-properties in TimerFormatable");
+        throw new TimerException("no-properties in TimerFormatable");
     }
 }
