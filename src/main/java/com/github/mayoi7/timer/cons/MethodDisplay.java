@@ -10,5 +10,11 @@ public enum MethodDisplay {
     /**
      * 简单名称显示，仅包含方法名
      */
-    SIMPLE
+    SIMPLE,
+
+    /**
+     * 会在方法名后追加参数列表，
+     * 格式为{@code method[param1, param2, ...]}
+     */
+    PARAM
 }

@@ -1,12 +1,14 @@
 package com.github.mayoi7.timer.format;
 
 import com.github.mayoi7.timer.cons.ClassDisplay;
+import com.github.mayoi7.timer.cons.MethodDisplay;
 import com.github.mayoi7.timer.props.TimerOutputSource;
 import com.github.mayoi7.timer.props.TimerProperties;
 import com.github.mayoi7.timer.utils.TimerUtil;
 
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -60,19 +62,26 @@ public abstract class AbstractFormatter implements TimerFormatable {
 
     @Override
     public String formatClass(Class clazz) {
-        if(ClassDisplay.FULL.equals(properties.getTimerMode().getClassMode())) {
-            return clazz.getName();
-        } else if(ClassDisplay.SIMPLE.equals(properties.getTimerMode().getClassMode())) {
-            return clazz.getSimpleName();
-        } else {
-            return "illegal-class-name";
+        switch (properties.getTimerMode().getClassMode()) {
+            case FULL:
+                return clazz.getName();
+            case SIMPLE:
+                return clazz.getSimpleName();
+            default:
+                return "[illegal-class-name]";
         }
     }
 
     @Override
     public String formatMethod(Method method) {
-        // TODO: 2019/5/31 根据methodMode不同进行设定
-        return method.getName();
+        switch (properties.getTimerMode().getMethodMode()) {
+            case SIMPLE:
+                return method.getName();
+            case PARAM:
+                return method.getName() + Arrays.toString(method.getParameters());
+            default:
+                return "[illegal-method-name/params]";
+        }
     }
 
     @Override
