@@ -11,7 +11,7 @@
     <groupId>com.github.mayoi7</groupId>
     <artifactId>timer</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.2-RELEASE</version>
+    <version>1.1.0-RELEASE</version>
     <name>timer</name>
     <description>Timer for calculating the method time</description>
 
