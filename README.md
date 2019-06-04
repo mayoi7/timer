@@ -76,7 +76,7 @@ timer:
   format:
     date-format: yyyy-MM-dd HH:mm:ss
     file-format: timer-demo
-    formatter-path: com.github.mayoi7.timer.simulate.UserFormatter
+    formatter-path: com.github.mayoi7.timer.demo.simulate.UserFormatter
     log-path: /
 ```
 
