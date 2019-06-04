@@ -1,4 +1,4 @@
-package com.github.mayoi7.timer;
+package com.github.mayoi7.timer.demo;
 
 import com.github.mayoi7.timer.anno.Timer;
 import com.github.mayoi7.timer.cons.ResultPosition;
@@ -24,14 +24,25 @@ public class TimerDemo {
 
     public static final int SMALL_TEST_TIMES = 10000;
 
-    @Timer(formatter = "", position = ResultPosition.LOG, unit = TimeUnit.SECONDS)
-    public void longTimeMethod() {
-        System.out.println("longTimeMethod begin");
+    @Timer(formatter = "com.github.mayoi7.timer.demo.simulate.UserFormatter")
+    public int longTimeMethod(int a) {
+        System.out.println("longTimeMethod-int begin");
         List<Integer> list = new ArrayList<>();
 
         for (int i = 0; i < MEDIUM_TEST_TIMES; i++) {
             list.add(i);
         }
-        System.out.println("longTimeMethod over");
+        System.out.println("longTimeMethod-int over");
+        return a;
+    }
+
+    public void longTimeMethod() {
+        System.out.println("longTimeMethod-int begin");
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < MEDIUM_TEST_TIMES; i++) {
+            list.add(i);
+        }
+        System.out.println("longTimeMethod-int over");
     }
 }

@@ -1,4 +1,4 @@
-package com.github.mayoi7.timer.simulate;
+package com.github.mayoi7.timer.demo.simulate;
 
 import com.github.mayoi7.timer.format.TimerFormatable.InfoReceiver;
 
