@@ -29,7 +29,7 @@ public class SimpleFormatter extends AbstractFormatter {
 
         @Override
         public String output() {
-            return "\n[\n" + super.output() + "\n]";
+            return "\n[" + super.output().substring(28) + "]";
         }
     }
 

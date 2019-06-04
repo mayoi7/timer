@@ -15,12 +15,26 @@ import java.util.Date;
 public interface TimerFormatable extends Formatable {
 
     /**
-     * 用于接收格式化后属性的对象
+     * 用于接收格式化后属性的对象<br/>
+     * 内部提供了五个可供输出的属性：<br/>
+     * <ul>
+     *     <li>date: 打印结果的时间</li>
+     *     <li>name: 计时器的名称（如果不设置则为一个8位随机字符串）</li>
+     *     <li>duration: 方法执行时间</li>
+     *     <li>classInfo: 类信息，如果想要获取更多的类格式，
+     *     可以通过重写AbstractFormatter中的formatClass方法实现（不推荐重写）</li>
+     *     <li>methodInfo: 方法信息，如果想获取更多的方法信息，需要重写formatMethod</li>
+     * </ul>
+     *
      */
     @Data
     class InfoReceiver {
+
         /** 日期 */
         protected String date;
+
+        /** 名称 */
+        protected String name;
 
         /** 执行时间 */
         protected String duration;
@@ -37,7 +51,7 @@ public interface TimerFormatable extends Formatable {
          * @return 拼接后的输出结果
          */
         public String output() {
-            return date + "\n" + duration + "\n" + classInfo + "\n" + methodInfo;
+            return toString();
         }
     }
 
@@ -72,6 +86,8 @@ public interface TimerFormatable extends Formatable {
         TimerOutputSource property = (TimerOutputSource)source;
         InfoReceiver receiver = getInfoReceiver();
 
+        // 这里由于name不需要格式化，所以可以直接注入
+        receiver.setName(property.getName());
         receiver.setDate(formatDate(property.getDate()));
         receiver.setDuration(formatTime(property.getDuration()));
         receiver.setClassInfo(formatClass(property.getClazz()));

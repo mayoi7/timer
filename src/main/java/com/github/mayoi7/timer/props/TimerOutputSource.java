@@ -1,5 +1,6 @@
 package com.github.mayoi7.timer.props;
 
+import com.github.mayoi7.timer.utils.IdUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -16,6 +17,9 @@ import java.util.Date;
 @AllArgsConstructor
 public class TimerOutputSource {
 
+    /** 计时器的名称 */
+    private String name;
+
     /** 输出结果的时间 */
     private Date date;
 
@@ -27,5 +31,9 @@ public class TimerOutputSource {
 
     /** 方法所在的类 */
     private Class clazz;
+
+    public TimerOutputSource(Date date, long duration, Method method, Class clazz) {
+        this(IdUtil.getRandomId(), date, duration, method, clazz);
+    }
 
 }

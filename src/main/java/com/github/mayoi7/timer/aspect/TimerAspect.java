@@ -76,9 +76,15 @@ public class TimerAspect {
             // 方法所在类
             Class clazz = joinPoint.getSignature().getDeclaringType();
 
-            // 构建数据源对象
-            TimerOutputSource source
-                    = new TimerOutputSource(new Date(), duration, method, clazz);
+            TimerOutputSource source = null;
+
+            // 注入timer的名称属性，构建数据源对象
+            if("".equals(timer.name())) {
+                source = new TimerOutputSource(new Date(), duration, method, clazz);
+            } else {
+                source = new TimerOutputSource(timer.name(), new Date(),
+                        duration, method, clazz);
+            }
 
             // 构建结果输出工具对象
             TimerStreamOutputer outputer = TimerStreamOutputer

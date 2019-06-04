@@ -1,6 +1,7 @@
 package com.github.mayoi7.timer.anno;
 
 import com.github.mayoi7.timer.cons.ResultPosition;
+import com.github.mayoi7.timer.utils.IdUtil;
 
 import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
@@ -21,6 +22,12 @@ public @interface Timer {
      * @return 指定的匹配规则
      */
     String value() default "";
+
+    /**
+     * 计时器的名称，可以不设置，默认生成一个随机id
+     * @return 计时器名称
+     */
+    String name() default "";
 
     /**
      * 时间单位

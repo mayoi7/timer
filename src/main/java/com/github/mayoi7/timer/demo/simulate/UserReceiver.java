@@ -10,6 +10,7 @@ public class UserReceiver extends InfoReceiver {
 
     @Override
     public String output() {
-        return "\nuser:\n" + date + " | " + duration + " | " + classInfo + " | " + methodInfo;
+        return "\nuser:\n" + date + " | " + name + " | " + duration
+                + " | " + classInfo + " | " + methodInfo;
     }
 }

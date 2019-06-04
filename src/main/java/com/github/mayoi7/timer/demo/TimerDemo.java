@@ -24,7 +24,7 @@ public class TimerDemo {
 
     public static final int SMALL_TEST_TIMES = 10000;
 
-    @Timer(formatter = "com.github.mayoi7.timer.demo.simulate.UserFormatter")
+    @Timer(name = "abcdefg")
     public int longTimeMethod(int a) {
         System.out.println("longTimeMethod-int begin");
         List<Integer> list = new ArrayList<>();
