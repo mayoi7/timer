@@ -14,8 +14,6 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -70,7 +68,12 @@ public class TimerAspect {
             }
 
             // 时间花费
-            long duration = TimerUtil.timeConversion(endTime - startTime, unit);
+            long duration = endTime - startTime;
+
+            if(unit != TimeUnit.MILLISECONDS) {
+                TimerUtil.timeConversion(endTime - startTime, unit);
+            }
+
             // 执行的方法对象
             Method method = ((MethodSignature)joinPoint.getSignature()).getMethod();
             // 方法所在类

@@ -6,3 +6,8 @@ timer:
     unit: milliseconds
   format:
     date-format: yyyy-MM-dd HH:mm:ss
+server:
+  tomcat:
+    max-threads: 10000
+    accept-count: 1000
+    min-spare-threads: 30
